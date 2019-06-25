@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "/usr/share/tsung/tsung-1.0.dtd" [] >
+
+<tsung loglevel="info">
+
+    <clients>
+        <client host="localhost" use_controller_vm="true"/>
+    </clients>
+
+    <servers>
+        <server host="192.168.1.1" port="8080" type="tcp"></server>
+    </servers>
+
+    <load>
+        <arrivalphase phase="1" duration="3" unit="minute">
+            <users interarrival="2" unit="second"></users>
+        </arrivalphase>
+
+        <!-- <arrivalphase phase="2" duration="10" unit="minute">
+            <users interarrival="1" unit="second"></users>
+        </arrivalphase>
+
+        <arrivalphase phase="3" duration="10" unit="minute">
+            <users interarrival="0.1" unit="second"></users>
+        </arrivalphase> -->
+    </load>
+
+    <options>
+        <option name="file_server" id="file_id"  value="/home/emanuele/.tsung/transactions.csv"></option>
+    </options>
+
+    <sessions>
+        <session name="transactione" weight="1" type="ts_http">
+
+
+
+            <setdynvars sourcetype="file" fileid="file_id" delimiter=";" order="random">
+                <var name="transaction" />
+            </setdynvars>
+
+            <request subst="true"> 
+                <http url="/search" method="POST" version="1.1" contents="t_id=%%_transaction%%" content_type='application/x-www-form-urlencoded'></http>
+            </request>
+        </session>
+    </sessions>
+</tsung>

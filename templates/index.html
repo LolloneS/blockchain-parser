@@ -1,0 +1,25 @@
+<html>
+    <head>
+    <title>BitCoin</title>
+        <link rel="stylesheet" type="text/css" href="../static/layout.css" />
+        <div id='header'></div>
+        <h1>₿itCoin</h1>
+    </head>
+    <body>
+            <div class="container">
+                    <form  method="POST" id="form_search">
+                      <div class="row">
+                        <div class="col-25">
+                          <label for="fname">Transaction id</label>
+                        </div>
+                        <div class="col-75">
+                          <input type="text" name="t_id" id="t_id" placeholder="Transaction id"/>
+                        </div>
+                      </div>
+                      <button  id="sch_btn" type="submit" formaction="/search" value="Search" class='btn'> Search </button>
+                      <button id="chk_btn" type="submit" formaction="/dspending" value="Dspending" class='btn'>Check Double Spending</button>
+                    </form>
+                    
+                  </div>
+
+
